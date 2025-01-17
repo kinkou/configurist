@@ -1,10 +1,7 @@
-/.bundle/
-/vendor/
-/.ruby-lsp/
-
 .DS_Store
-
-.tool-versions
-
-# rspec failure tracking
 .rspec_status
+.tool-versions
+/.bundle/
+/.ruby-lsp/
+/pkg/
+/vendor/
