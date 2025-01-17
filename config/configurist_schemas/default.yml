@@ -1,0 +1,39 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "http://marketer.tech/schemas/m1/persisted_settings"
+
+title: "Default"
+description: "Default scope schema for tests"
+_id: "default"
+
+$defs:
+  reusable_subschema:
+    type: "object"
+    required: ["property_name"]
+    additionalProperties: false
+    properties:
+      property_name:
+        type: "string"
+        minLength: 1
+
+type: "object"
+required: []
+additionalProperties: false
+
+properties:
+  settings_group:
+    title: "Settings group"
+    description: "A schema node to group settings under the same name"
+    type: "object"
+    required: []
+    additionalProperties: false
+    properties:
+      simple_string_setting:
+        title: "Simple string setting"
+        description: "A simple nested setting of the string type"
+        type: "string"
+        minLength: 1
+        _non_standard_key: "Value of a non-standard key"
+      subschema_setting:
+        title: "Subschema setting"
+        description: "An example of a setting that uses a subschema"
+        $ref: "#/$defs/reusable_subschema"
