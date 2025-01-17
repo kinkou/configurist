@@ -4,8 +4,6 @@
 $DEBUG = true
 $VERBOSE = true
 
-require 'bundler/setup'
-
 require 'configurist'
 
 require 'irb'
