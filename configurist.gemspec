@@ -26,4 +26,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 3.2'
+
+  spec.add_dependency 'activerecord', '>= 7'
+  spec.add_dependency 'ancestry', '>= 4.3', '< 5'
+  spec.add_dependency 'json_schemer', '>= 2.3'
 end
