@@ -10,9 +10,9 @@ ____ /
 
 The problem that Configurist solves is best understood with an example.
 
-Let's imagine that in your Rails project you have organizations and users. Users belongs to organizations, and organizations can have many users. Each user has a home page, where they can customize text color, background color and title. There is a global default for these parameters, but each organization can override these defaults. In addition, each user should be able to override its organization defaults as well. Plus, you want to make the settings editable for users, so each setting should have a title and possibly a description (to show in the settings editing form), a type (boolean, string, number, etc) and validations (6 hexadecimal characters, one of 'red', 'green', 'blue', etc).
+Let's imagine that in your Rails project you have organizations and users. Users belong to organizations, and organizations have many users. Each user has a home page, where they can customize text color, background color and title. There are global defaults for these parameters, but each organization can override them. In addition, each user is able to override the organization defaults. Plus you want to make the settings editable for users, so each setting should have a title and possibly a description (to show in the settings editing form), a type (boolean, string, number, etc) and validations (6 hexadecimal characters, one of 'red', 'green', 'blue', etc).
 
-With Configurist you can describe the shape of settings data structure with a JSON schema (some details were omitted for brevity):
+With Configurist, you can describe the shape of settings with a JSON schema (some details omitted for brevity):
 
 ```YAML
 _id: "default"
@@ -40,9 +40,9 @@ properties:
         minLength: 1
 ```
 
-Save the schema to `config/configurist_schemas/default.yml` where the gem will find and auto-load it.
+Save the schema to `config/configurist_schemas/default.yml` inside your Rails app directory where the gem will find and auto-load it.
 
-Make your models configurable:
+Now, make your models configurable:
 
 ```ruby
 class Organization < ApplicationRecord
