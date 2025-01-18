@@ -1,12 +1,12 @@
 # Configurist
 
+```
       {}
     O/
   _/|
 ,__/ \
 ____ /
-
-(logo under construction)
+```
 
 The problem that Configurist solves is best understood with an example.
 
