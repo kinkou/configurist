@@ -10,9 +10,10 @@ ____ /
 
 The problem that Configurist solves is best understood with an example.
 
-Let's imagine that in your Rails project you have organizations and users. Users belong to organizations, and organizations have many users. Each user has a home page, where they can customize text color, background color and title. There are global defaults for these parameters, but each organization can override them. In addition, each user is able to override the organization defaults. Plus you want to make the settings editable for users, so each setting should have a title and possibly a description (to show in the settings editing form), a type (boolean, string, number, etc) and validations (6 hexadecimal characters, one of 'red', 'green', 'blue', etc).
+Let's imagine that in your Rails project you have organizations and users. Users belong to organizations, and organizations have many users. Each user has a home page, where they can customize text color, background color and title. There are global defaults for these parameters, but organizations can override them. In addition, each user can override the organization defaults.
+You plan to make settings editable, so for each setting you will need to retrieve its title and description (to show in the settings editing form), type (boolean, string, number, etc) and constraints (exactly 6 hexadecimal characters, one of 'red', 'green', 'blue', etc).
 
-With Configurist, you can describe the shape of settings with a JSON schema (some details omitted for brevity):
+Describe your settings with JSON Schema (some details omitted for brevity):
 
 ```YAML
 _id: "default"
@@ -65,7 +66,10 @@ global_defaults_data = {
   }
 }
 
-global_defaults = Configurist::Models::Settings.create!(data: global_defaults_data, scope: "default")
+global_defaults = Configurist::Models::Settings.create!(
+  data: global_defaults_data,
+  scope: "default"
+)
 ```
 
 Now, create organization's overrides:
