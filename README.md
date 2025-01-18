@@ -8,7 +8,7 @@
 ____ /
 ```
 
-The problem that Configurist solves is best understood with an example.
+The problem that Configurist solves is best described with an example.
 
 Let's imagine that in your Rails project you have organizations and users. Users belong to organizations, and organizations have many users. Each user has a home page, where they can customize text color, background color and title. There are global defaults for these parameters, but organizations can override them. In addition, each user can override the organization defaults.
 You plan to make settings editable, so for each setting you will need to retrieve its title and description (to show in the settings editing form), type (boolean, string, number, etc) and constraints (exactly 6 hexadecimal characters, one of 'red', 'green', 'blue', etc).
