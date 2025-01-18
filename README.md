@@ -28,7 +28,7 @@ properties:
         type: "string"
         title: "Text color"
         description: "Home page text color"
-        pattern: "^[0-9A-F]{8}$"
+        pattern: "^[0-9A-F]{6}$"
       background_color:
         type: "string"
         title: "Background color"
