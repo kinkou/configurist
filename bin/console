@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'awesome_print'
+
 $DEBUG = ENV.fetch('DEBUG', 'false') == 'true'
 $VERBOSE = ENV.fetch('VERBOSE', 'false') == 'true'
 
