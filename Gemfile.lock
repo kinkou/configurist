@@ -114,6 +114,8 @@ GEM
       rubocop (~> 1.61)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
+    shoulda-matchers (6.4.0)
+      activesupport (>= 5.2.0)
     simpleidn (0.2.3)
     stringio (3.1.2)
     timeout (0.4.3)
@@ -140,6 +142,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rake
   rubocop-rspec
+  shoulda-matchers
 
 BUNDLED WITH
    2.5.6
