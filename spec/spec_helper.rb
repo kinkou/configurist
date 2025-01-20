@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+ENV['CONFIGURIST_AUTOLOAD'] = 'false' # Do not load schemas
 require 'configurist'
 
 RSpec.configure do |config|
