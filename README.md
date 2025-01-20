@@ -8,6 +8,8 @@
 ____ /
 ```
 
+## Introduction
+
 The problem that Configurist solves is best described with an example.
 
 Let's imagine that in your Rails project you have organizations and users. Users belong to organizations, and organizations have many users. Each user has a home page, where they can customize text color, background color and title. There are global defaults for these parameters, but organizations can override them. In addition, each user can override the organization defaults.
@@ -133,5 +135,24 @@ user_settings.home_page.text_color._schema.name #=> "Text color"
 user_settings.home_page.text_color._schema.description #=> "Home page text color"
 ```
 
-TBC
+## Terminology, Gem Design, and Limitations
 
+At this stage of development, it is not entirely clear what level of flexibility is required. The constraints enforced by the gem are based on the following assumptions:
+- At the root of the settings hierarchy, there must be a record that defines the defaults for the given scope.
+- The nature of defaults implies that there can be only one defaults record within a given scope. Everything that inherits from the defaults is considered an override. Defaults must have a value for all settings defined in the scope's schema, including optional ones.
+- Settings hierarchies must operate within a single scope.
+- Default records and group override records must not be used as settings for configurable records. In essence, they are not "concrete" settings.
+- Finally, a settings record cannot be shared between multiple configurable records. Each configurable record must have its own exclusive concrete settings (overrides) record.
+
+## Requirements
+
+- Rails >= 8. Currently, Configurist is tested only with Rails 8, but it is likely compatible with older versions as it relies on basic Rails functionality.
+- PostgreSQL >= 15. The gem uses the `NULLS NOT DISTINCT` parameter in the index of the `Configurist::Models::Settings` model to ensure consistency (see the Limitations section for more details).
+
+## Used libraries
+For organizing records into trees it uses the amazing [ancestry](https://github.com/stefankroes/ancestry) gem, which will have your back covered as your collection of settings records grows.
+
+For working with schemas it uses the great [json_schemer](https://github.com/davishmcclurg/json_schemer) gem, which is probably the most advanced one in the Ruby ecosystem when it comes to supporting the latest JSON Schema standards.
+
+## Configuration
+It is [recommended](https://github.com/stefankroes/ancestry/tree/master?tab=readme-ov-file#configure-ancestry-defaults) that you set ancestry's `default_ancestry_format` setting to `:materialized_path2`.
