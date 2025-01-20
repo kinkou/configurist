@@ -149,6 +149,15 @@ At this stage of development, it is not entirely clear what level of flexibility
 - Rails >= 8. Currently, Configurist is tested only with Rails 8, but it is likely compatible with older versions as it relies on basic Rails functionality.
 - PostgreSQL >= 15. The gem uses the `NULLS NOT DISTINCT` index parameter for `Configurist::Models::Settings` model to ensure consistency (see the Limitations section for more details).
 
+## Settings
+```ruby
+# Loaded schemas are stored here
+Configurist.schemas #=> { 'your_schema_2' => {…}, 'your_schema_2' => {…} }
+
+# Sets maximum settings nesting (0-bazed)
+Configurist.max_nesting #=> 9
+```
+
 ## Used libraries
 For organizing records into trees Configurist uses the amazing [ancestry](https://github.com/stefankroes/ancestry) gem, which will have your back covered as your collection of settings records grows.
 
