@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-$DEBUG = true
-$VERBOSE = true
+$DEBUG = ENV.fetch('DEBUG', 'false') == 'true'
+$VERBOSE = ENV.fetch('VERBOSE', 'false') == 'true'
 
 require 'configurist'
 
