@@ -18,7 +18,7 @@ You plan to make settings editable, so for each setting you will need to retriev
 Describe your settings with JSON Schema (some details omitted for brevity):
 
 ```YAML
-_id: "default"
+$id: "default"
 type: "object"
 properties:
   home_page:

@@ -12,7 +12,7 @@ module Configurist
 
         validate_schema!(schema:)
 
-        schema_id = schema['_id']
+        schema_id = schema['$id']
         Configurist.schemas[schema_id] = schema
       end
     end
