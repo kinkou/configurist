@@ -9,13 +9,14 @@ RSpec.shared_context 'with test environment' do
         host: '127.0.0.1',
         port: '5432',
         username: 'postgres',
-        password: 'password',
-        min_messages: 'WARNING'
+        password: 'password'
       }
     )
   end
 
   let(:create_configurables_table) do
+    drop_configurables_table if ActiveRecord::Base.connection.table_exists?(:configurables)
+
     ActiveRecord::Base.connection.create_table(:configurables)
   end
 
@@ -30,16 +31,18 @@ RSpec.shared_context 'with test environment' do
   end
 
   let(:create_configurist_settings_table) do
+    drop_configurist_settings_table if ActiveRecord::Base.connection.table_exists?(:configurist_settings)
+
     ActiveRecord::Base.connection.create_table(:configurist_settings) do |t|
       t.string(
-        'ancestry',
+        :ancestry,
         collation: 'C',
         null: (Ancestry.default_ancestry_format == :materialized_path),
         index: { name: 'ancestry' }
       )
 
       t.belongs_to :configurable, polymorphic: true, index: false
-      t.string :scope, null: false
+      t.string :scope, null: false # , index: true
       t.jsonb :data, null: false, default: {}
       t.timestamps
 
