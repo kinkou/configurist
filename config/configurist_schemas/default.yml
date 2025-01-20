@@ -1,5 +1,5 @@
 $schema: "https://json-schema.org/draft/2020-12/schema"
-$id: "http://marketer.tech/schemas/m1/persisted_settings"
+$id: "settings_schema"
 
 title: "Default"
 description: "Default scope schema for tests"
