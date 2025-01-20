@@ -147,12 +147,12 @@ At this stage of development, it is not entirely clear what level of flexibility
 ## Requirements
 
 - Rails >= 8. Currently, Configurist is tested only with Rails 8, but it is likely compatible with older versions as it relies on basic Rails functionality.
-- PostgreSQL >= 15. The gem uses the `NULLS NOT DISTINCT` parameter in the index of the `Configurist::Models::Settings` model to ensure consistency (see the Limitations section for more details).
+- PostgreSQL >= 15. The gem uses the `NULLS NOT DISTINCT` index parameter for `Configurist::Models::Settings` model to ensure consistency (see the Limitations section for more details).
 
 ## Used libraries
-For organizing records into trees it uses the amazing [ancestry](https://github.com/stefankroes/ancestry) gem, which will have your back covered as your collection of settings records grows.
+For organizing records into trees Configurist uses the amazing [ancestry](https://github.com/stefankroes/ancestry) gem, which will have your back covered as your collection of settings records grows.
 
 For working with schemas it uses the great [json_schemer](https://github.com/davishmcclurg/json_schemer) gem, which is probably the most advanced one in the Ruby ecosystem when it comes to supporting the latest JSON Schema standards.
 
 ## Configuration
-It is [recommended](https://github.com/stefankroes/ancestry/tree/master?tab=readme-ov-file#configure-ancestry-defaults) that you set ancestry's `default_ancestry_format` setting to `:materialized_path2`.
+It is [recommended](https://github.com/stefankroes/ancestry/tree/master?tab=readme-ov-file#configure-ancestry-defaults) that you set `default_ancestry_format` setting of the `ancestry` library to `:materialized_path2`.
