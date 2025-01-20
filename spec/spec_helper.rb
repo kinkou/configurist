@@ -25,3 +25,6 @@ Shoulda::Matchers.configure do |config|
     with.library :active_model
   end
 end
+
+ActiveRecord::Base.logger = Logger.new($stdout)
+ActiveRecord::Base.logger.level = ENV.fetch('LOG_LEVEL', 'WARN')
