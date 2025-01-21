@@ -35,7 +35,7 @@ RSpec.describe Configurist::SchemaFilesLocator do
       let(:gem_schema_files_path) { Pathname.new(__dir__) }
 
       it 'raises an exception' do
-        expect { perform }.to raise_error(described_class::SchemaFileError)
+        expect { perform }.to raise_error(described_class::Error)
       end
     end
   end

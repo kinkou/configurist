@@ -2,14 +2,14 @@
 
 module Configurist
   class SchemaFilesLocator
-    SchemaFileError = Class.new(StandardError)
+    Error = Class.new(StandardError)
 
     SCHEMAS_LOCATION = 'config/configurist_schemas/**/*.yml'
 
     def call
       files = find_schema_files
 
-      raise(SchemaFileError, 'No schema files found') if files.empty?
+      raise(Error, 'No schema files found') if files.empty?
 
       files.filter(&:file?)
     end
