@@ -1,4 +1,5 @@
 .DS_Store
+.irbrc
 .rspec_status
 .tool-versions
 /.bundle/
