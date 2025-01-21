@@ -2,7 +2,7 @@
 
 module Configurist
   class SchemaLoader
-    InvalidSchemaError = Class.new(StandardError)
+    Error = Class.new(StandardError)
 
     def call
       Configurist.schemas.clear
@@ -24,10 +24,10 @@ module Configurist
     end
 
     def validate_schema!(schema:)
-      error_messages = Configurist::Validator.new.validate_schema(schema:)
+      error_messages = Configurist::Validators::Schema.new.validate_schema(schema:)
       return if error_messages.blank?
 
-      raise(InvalidSchemaError, error_messages.join('; '))
+      raise(Error, error_messages.join('; '))
     end
   end
 end
