@@ -14,7 +14,7 @@ end
 
 require 'configurist/version'
 require 'configurist/schema_files_locator'
-require 'configurist/validator'
+require 'configurist/validators/schema'
 require 'configurist/schema_loader'
 require 'configurist/concerns/configurable'
 require 'configurist/activate'

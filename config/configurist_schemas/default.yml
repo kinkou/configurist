@@ -7,7 +7,6 @@ description: "Default scope schema for tests"
 $defs:
   reusable_subschema:
     type: "object"
-    required: ["property_name"]
     additionalProperties: false
     properties:
       property_name:
@@ -23,7 +22,7 @@ properties:
     title: "Settings group"
     description: "A schema node to group settings under the same name"
     type: "object"
-    required: []
+    required: ["simple_number_setting"]
     additionalProperties: false
     properties:
       simple_string_setting:
@@ -36,3 +35,9 @@ properties:
         title: "Subschema setting"
         description: "An example of a setting that uses a subschema"
         $ref: "#/$defs/reusable_subschema"
+      simple_number_setting:
+        title: "Simple number setting"
+        description: "A simple nested setting of the number type"
+        type: "number"
+        default: 3.14
+        minimum: 1

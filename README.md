@@ -144,6 +144,19 @@ At this stage of development, it is not entirely clear what level of flexibility
 - Default records and group override records must not be used as settings for configurable records. In essence, they are not "concrete" settings.
 - Finally, a settings record cannot be shared between multiple configurable records. Each configurable record must have its own exclusive concrete settings (overrides) record.
 
+### Schema restrictions
+Configurist puts some restrictions on the way the settings schemas are defined. At the topmost level, settings data structure must be an object (a hash):
+
+```ruby
+"settings" # invalid
+[{ prop: 'setting' }] # invalid
+
+{ prop: 'setting', group: { prop: 'setting' } } # valid
+```
+
+### Schema defaults
+When a root node in a settings scope is created Configurist understands that this is the defaults, so it will require all properties to be present, and is scope schema defines any defaults, it will fill them in automatically, unless they are overridden in the data that you supply at the time of creation.
+
 ## Requirements
 
 - Rails >= 8. Currently, Configurist is tested only with Rails 8, but it is likely compatible with older versions as it relies on basic Rails functionality.
