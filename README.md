@@ -178,3 +178,6 @@ For working with schemas it uses the great [json_schemer](https://github.com/dav
 
 ## Configuration
 It is [recommended](https://github.com/stefankroes/ancestry/tree/master?tab=readme-ov-file#configure-ancestry-defaults) that you set `default_ancestry_format` setting of the `ancestry` library to `:materialized_path2`.
+
+## Development
+You can use `irb` to play around with Configurist. Just copy `.irbrc.example` to `.irbrc`, modify it if needed (it is gitignored) and run `bundle exec irb` in the gem's root folder.
