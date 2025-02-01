@@ -12,7 +12,21 @@ module Configurist
         errors
       end
 
+      def insert_defaults(data:, schema:)
+        insert_defaults_and_validate(data:, schema:)[:data]
+      end
+
       def validate_defaults(data:, schema:)
+        insert_defaults_and_validate(data:, schema:)[:errors]
+      end
+
+      def validate_overrides(data:, schema:)
+        JSONSchemer.schema(schema).validate(data).pluck('error')
+      end
+
+      private
+
+      def insert_defaults_and_validate(data:, schema:)
         data_with_defaults = data.deep_dup
 
         defaults_schema = make_all_props_required(source_schema: schema, target_schema: schema.deep_dup)
@@ -22,14 +36,8 @@ module Configurist
                  .validate(data_with_defaults)
                  .pluck('error')
 
-        ActiveSupport::HashWithIndifferentAccess.new({ data:, errors: })
+        ActiveSupport::HashWithIndifferentAccess.new({ data: data_with_defaults, errors: })
       end
-
-      def validate_overrides(data:, schema:)
-        JSONSchemer.schema(schema).validate(data).pluck('error')
-      end
-
-      private
 
       # Takes a schema and its deep clone, recursively walks the original schema and adds `required`
       # to the copy, effectively making all settings required.

@@ -34,25 +34,31 @@ RSpec.describe Configurist::Validators::Schema do
     end
   end
 
+  describe '#insert_defaults' do
+    let(:perform) { described_class.new.insert_defaults(data:, schema:) }
+
+    let(:data) do
+      { settings_group: { simple_string_setting: 'string', subschema_setting: { property_name: 'string' } } }
+    end
+
+    it 'inserts them into data if they are present in schema' do
+      expect(perform.dig(:settings_group, :simple_number_setting)).to eq(3.14)
+    end
+
+    it 'returns ActiveSupport::HashWithIndifferentAccess' do
+      expect(perform.class.name).to eq('ActiveSupport::HashWithIndifferentAccess')
+    end
+  end
+
   describe '#validate_defaults' do
     let(:perform) { described_class.new.validate_defaults(data:, schema:) }
-
-    describe 'default values' do
-      let(:data) do
-        { settings_group: { simple_string_setting: 'string', subschema_setting: { property_name: 'string' } } }
-      end
-
-      it 'fills them into data if they are present in schema' do
-        expect(perform.dig('data', 'settings_group', 'simple_number_setting')).to eq(3.14)
-      end
-    end
 
     describe 'making all properties required' do
       context 'when data is empty' do
         let(:data) { {} }
 
         specify do
-          expect(perform[:errors]).to eq(['object at root is missing required properties: settings_group'])
+          expect(perform).to eq(['object at root is missing required properties: settings_group'])
         end
       end
 
@@ -60,7 +66,7 @@ RSpec.describe Configurist::Validators::Schema do
         let(:data) { { settings_group: {} } }
 
         specify do
-          expect(perform[:errors]).to(
+          expect(perform).to(
             eq(['object at `/settings_group` is missing required properties: simple_string_setting, subschema_setting'])
           )
         end
@@ -70,7 +76,7 @@ RSpec.describe Configurist::Validators::Schema do
         let(:data) { { settings_group: { simple_string_setting: 'string' } } }
 
         specify do
-          expect(perform[:errors]).to(
+          expect(perform).to(
             eq(['object at `/settings_group` is missing required properties: subschema_setting'])
           )
         end
@@ -80,7 +86,7 @@ RSpec.describe Configurist::Validators::Schema do
         let(:data) { { settings_group: { simple_string_setting: 'string', subschema_setting: {} } } }
 
         specify do
-          expect(perform[:errors]).to(
+          expect(perform).to(
             eq(['object at `/settings_group/subschema_setting` is missing required properties: property_name'])
           )
         end
@@ -91,7 +97,7 @@ RSpec.describe Configurist::Validators::Schema do
           { settings_group: { simple_string_setting: 'string', subschema_setting: { property_name: 'string' } } }
         end
 
-        specify { expect(perform[:errors]).to eq([]) }
+        specify { expect(perform).to eq([]) }
       end
     end
 
@@ -101,7 +107,7 @@ RSpec.describe Configurist::Validators::Schema do
       end
 
       it 'validates' do
-        expect(perform[:errors]).to(
+        expect(perform).to(
           eq(['value at `/settings_group/subschema_setting/property_name` is not a string'])
         )
       end
