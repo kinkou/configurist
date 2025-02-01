@@ -41,12 +41,22 @@ RSpec.describe Configurist::Validators::Schema do
       { settings_group: { simple_string_setting: 'string', subschema_setting: { property_name: 'string' } } }
     end
 
+    it 'returns ActiveSupport::HashWithIndifferentAccess' do
+      expect(perform.class.name).to eq('ActiveSupport::HashWithIndifferentAccess')
+    end
+
     it 'inserts them into data if they are present in schema' do
       expect(perform.dig(:settings_group, :simple_number_setting)).to eq(3.14)
     end
 
-    it 'returns ActiveSupport::HashWithIndifferentAccess' do
-      expect(perform.class.name).to eq('ActiveSupport::HashWithIndifferentAccess')
+    context 'when value different from schema default is present in the data' do
+      let(:data) do
+        { settings_group: { simple_number_setting: 2.72 } }
+      end
+
+      it 'does not override it with the default from the schema' do
+        expect(perform.dig(:settings_group, :simple_number_setting)).to eq(2.72)
+      end
     end
   end
 
