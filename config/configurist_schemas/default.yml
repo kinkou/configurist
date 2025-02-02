@@ -27,7 +27,7 @@ properties:
     properties:
       simple_string_setting:
         title: "Simple string setting"
-        description: "A simple nested setting of the string type"
+        description: "A simple nested setting of string type"
         type: "string"
         minLength: 1
         _non_standard_key: "Value of a non-standard key"
@@ -37,7 +37,12 @@ properties:
         $ref: "#/$defs/reusable_subschema"
       simple_number_setting:
         title: "Simple number setting"
-        description: "A simple nested setting of the number type"
+        description: "A simple nested setting of number type"
         type: "number"
         default: 3.14
         minimum: 1
+      simple_boolean_setting:
+        title: "Simple boolean setting"
+        description: "A simple nested setting of boolean type"
+        type: "boolean"
+        default: true
