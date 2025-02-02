@@ -3,6 +3,10 @@
 RSpec.describe Configurist::SchemaLoader do
   let(:perform) { described_class.new.call }
 
+  before do
+    Configurist.schemas = {}
+  end
+
   it 'loads available schemas to Configurist.schemas', :aggregate_failures do
     expect(Configurist.schemas).to eq({})
 
