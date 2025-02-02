@@ -137,11 +137,11 @@ user_settings.home_page.text_color._schema.description #=> "Home page text color
 
 ## Terminology, Gem Design, and Limitations
 
-At this stage of development, it is not entirely clear what level of flexibility is required. The constraints enforced by the gem are based on the following assumptions:
-- At the root of the settings hierarchy, there must be a record that defines the defaults for the given scope.
-- The nature of defaults implies that there can be only one defaults record within a given scope. Everything that inherits from the defaults is considered an override. Defaults must have a value for all settings defined in the scope's schema, including optional ones.
+At this stage of development it is not entirely clear what level of flexibility is needed. The constraints enforced by the gem are based on the following assumptions:
+- Defaults must be at the root of the settings hierarchy and such record must define default values for all possible settings in the given scope, even optional ones.
+- Everything that inherits from the defaults is considered an override.
 - Settings hierarchies must operate within a single scope.
-- Default records and group override records must not be used as settings for configurable records. In essence, they are not "concrete" settings.
+- Default records and group override records must not be used as settings for configurable records, because in essence they are not "concrete" settings.
 - Finally, a settings record cannot be shared between multiple configurable records. Each configurable record must have its own exclusive concrete settings (overrides) record.
 
 ### Schema restrictions
