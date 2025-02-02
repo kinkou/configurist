@@ -10,6 +10,10 @@ module Configurist
   # Store loaded schemas here
   mattr_accessor :schemas
   self.schemas = ActiveSupport::HashWithIndifferentAccess.new
+
+  # Maximum nesting level for settings
+  mattr_accessor :max_nesting
+  self.max_nesting = 9
 end
 
 require 'configurist/version'
