@@ -160,7 +160,7 @@ When a root node in a settings scope is created Configurist understands that thi
 ## Requirements
 
 - Rails >= 8. Currently, Configurist is tested only with Rails 8, but it is likely compatible with older versions as it relies on basic Rails functionality.
-- PostgreSQL >= 15. The gem uses the `NULLS NOT DISTINCT` index parameter for `Configurist::Models::Settings` model to ensure consistency (see the Limitations section for more details).
+- PostgreSQL >= 15. The gem uses the `NULLS NOT DISTINCT` index parameter (see [PostgreSQL doc](https://www.postgresql.org/docs/15/sql-createindex.html)) for `Configurist::Models::Settings` model to ensure consistency.
 
 ## Settings
 ```ruby
